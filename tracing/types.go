@@ -10,12 +10,6 @@ import (
 	"github.com/mailru/easyjson/jwriter"
 )
 
-// MemoryDumpConfig configuration for memory dump. Used only when
-// "memory-infra" category is enabled.
-//
-// See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-MemoryDumpConfig
-type MemoryDumpConfig struct{}
-
 // TraceConfig [no description].
 //
 // See: https://chromedevtools.github.io/devtools-protocol/tot/Tracing#type-TraceConfig
@@ -28,7 +22,7 @@ type TraceConfig struct {
 	IncludedCategories   []string          `json:"includedCategories,omitempty"`   // Included category filters.
 	ExcludedCategories   []string          `json:"excludedCategories,omitempty"`   // Excluded category filters.
 	SyntheticDelays      []string          `json:"syntheticDelays,omitempty"`      // Configuration to synthesize the delays in tracing.
-	MemoryDumpConfig     *MemoryDumpConfig `json:"memoryDumpConfig,omitempty"`     // Configuration for memory dump triggers. Used only when "memory-infra" category is enabled.
+	MemoryDumpConfig     easyjson.RawMessage `json:"memoryDumpConfig,omitempty"`     // Configuration for memory dump triggers. Used only when "memory-infra" category is enabled.
 }
 
 // StreamFormat data format of a trace. Can be either the legacy JSON format
